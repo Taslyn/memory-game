@@ -1,0 +1,13 @@
+body {
+  max-width: 60em;
+}
+
+#gameBackground {
+  background: blue;
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgrey;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 5px 5px 20px lightgrey;
+}
