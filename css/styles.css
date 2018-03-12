@@ -22,3 +22,7 @@ body {
   min-width: 23%;
   height: 25%;
 }
+
+.memoryCard span {
+  display: none;
+}
