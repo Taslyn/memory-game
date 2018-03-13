@@ -2,6 +2,7 @@
 // initial distribution:
 let cardDistribution = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
 let firstCard = undefined;
+let secondCard = undefined;
 const numberOfPairs = cardDistribution.length/2;
 let pairsFound = 0;
 
@@ -26,69 +27,57 @@ function placeCards(cardDistribution) {
   }
 }
 
+function hideCards(cardOne, cardTwo) {
+  cardOne.querySelector('span').style.visibility = 'hidden';
+  cardOne.style.backgroundColor = '#555';
+  cardTwo.querySelector('span').style.visibility = 'hidden';
+  cardTwo.style.backgroundColor = '#555';
+}
+
 placeCards(cardDistribution);
 console.log('cards placed on grid');
+
 // attach eventListener to every card:
 for (let i = 1; i <= cardDistribution.length; i++) {
   let card = document.querySelector('#card' + i); //respective card
   // what happens when card is clicked:
+  console.log('Attach eventListener to card ' + i);
+
   card.addEventListener('click', function(event) {
     event.preventDefault();
-    //console.log(event);
-    //console.log(card);
-    // reveal card
     if (card.querySelector('span').style.visibility != 'visible') {
+      // if clicked card is hidden reveal it
       card.querySelector('span').style.visibility = 'visible';
+      //card.querySelector('span').style.opacity = '1';
+      card.style.backgroundColor = '#eee';
       if (firstCard === undefined) {   // if first card
-        return firstCard = card;
+        firstCard = card;
       } else {   //if second card
+        secondCard = card;
         console.log('1st card: ' + firstCard.textContent);
-        console.log('actual card: ' + card.textContent);
-        if (firstCard.textContent === card.textContent) { //cards match
+        console.log('actual card: ' + secondCard.textContent);
+        if (firstCard.textContent === secondCard.textContent) { //cards match
           pairsFound++;
-          console.log('A pair was found!' + pairsFound);
-          if (numberOfPairs === pairsFound) {
-            alert('You win!');
+          console.log('Number of pairs found: ' + pairsFound);
+          if (numberOfPairs === pairsFound) { //check if game is won
+            alert('You win! You only needed ' + pairsFound + ' turns!');
           }
-        } else { //cards do not match
-          firstCard.querySelector('span').style.visibility = 'hidden';
-          card.querySelector('span').style.visibility = 'hidden';
+        } else { //cards do not match --> hide both
+          setTimeout(hideCards(firstCard,secondCard),1500);
+          /*firstCard.querySelector('span').style.visibility = 'hidden';
+          firstCard.style.backgroundColor = '#555';
+          setTimeout(function() {console.log('Drehe Karten um');},1500);
+          setTimeout(function() {secondCard.querySelector('span').style.visibility = 'hidden';},1500);
+          setTimeout(function() {secondCard.style.backgroundColor = '#555';},1500);*/
         }
+        console.log('Reset value of FirstCard');
         firstCard = undefined; 
       }
       
     }
-   console.log('attached eventListener to every card');
     // 2nd card -> compare cards (increase turn)
     // agree -> leave revealed -> check if game ended
     // disagree -> cover both 
   });  
 }
-
-
-
-
-/*document.getElementByID('#card1').addEventListener('click', clickCard());
-
-function clickCard() {
-  event.preventDefault();
-} */
-/*  event.preventDefault();
-  // Select size input and Grid
-  let row = document.querySelector('#inputHeight').value; //number of rows
-  let column = document.querySelector('#inputWeight').value; //numbers of columns
-  let table = document.querySelector('#pixelCanvas'); //table element
-  table.innerHTML = ''; //reset the grid
-  let tableContent = '';
-  for (var r = 0; r < row; r++) {  //loop for rows/height
-    console.log("Printing out row = " + r);
-    tableContent += '<tr>';
-    for (var c = 0; c < column; c++) { //loop for columns/width
-      console.log("Printing out column = " + c);
-      tableContent += '<td></td>';
-    }
-    tableContent+= '</tr>';
-  }
-  table.innerHTML = tableContent;
-  //console.log(table.innerHTML);
-}); */
+console.log('attached eventListener to every card');

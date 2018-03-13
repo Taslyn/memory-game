@@ -17,13 +17,15 @@ body {
 }
 
 .memoryCard {
+  background-color: #555;
   border: solid 1px grey;
   border-radius: 10%;
   min-width: 23%;
   height: 25%;
+  transition: background-color 1.5s;
 }
 
 .memoryCard span {
   visibility: hidden;
-  transition: visibility 3s;
+  transition: visibility 1.5s;
 }
