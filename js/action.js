@@ -15,20 +15,30 @@ function shuffle(array) {
     }
     return array;
 }
-cardDistribution = shuffle(cardDistribution); //shuffle cards
 
-// put a value (or symbol) to every card:
+function placeCards(cardDistribution) {
+  // shuffle cards:
+  cardDistribution = shuffle(cardDistribution);
+  // put a symbol to every card on the field:
+  for (let i = 1; i <= cardDistribution.length; i++) {
+    let card = document.querySelector('#card' + i); //respective card
+    card.innerHTML = '<span>' + cardDistribution[i-1] + '</span>';
+  }
+}
+
+placeCards(cardDistribution);
+console.log('cards placed on grid');
+// attach eventListener to every card:
 for (let i = 1; i <= cardDistribution.length; i++) {
   let card = document.querySelector('#card' + i); //respective card
-  card.innerHTML = '<span>' + cardDistribution[i-1] + '</span>';
   // what happens when card is clicked:
   card.addEventListener('click', function(event) {
     event.preventDefault();
     //console.log(event);
     //console.log(card);
     // reveal card
-    if (card.querySelector('span').style.display != 'block') {
-      card.querySelector('span').style.display = 'block';
+    if (card.querySelector('span').style.visibility != 'visible') {
+      card.querySelector('span').style.visibility = 'visible';
       if (firstCard === undefined) {   // if first card
         return firstCard = card;
       } else {   //if second card
@@ -41,14 +51,14 @@ for (let i = 1; i <= cardDistribution.length; i++) {
             alert('You win!');
           }
         } else { //cards do not match
-          firstCard.querySelector('span').style.display = 'none';
-          card.querySelector('span').style.display = 'none';
+          firstCard.querySelector('span').style.visibility = 'hidden';
+          card.querySelector('span').style.visibility = 'hidden';
         }
         firstCard = undefined; 
       }
       
     }
-   
+   console.log('attached eventListener to every card');
     // 2nd card -> compare cards (increase turn)
     // agree -> leave revealed -> check if game ended
     // disagree -> cover both 

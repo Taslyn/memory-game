@@ -24,5 +24,6 @@ body {
 }
 
 .memoryCard span {
-  display: none;
+  visibility: hidden;
+  transition: visibility 3s;
 }
