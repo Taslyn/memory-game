@@ -22,10 +22,10 @@ body {
   border-radius: 10%;
   min-width: 23%;
   height: 25%;
-  transition: background-color 1.5s;
+  /*transition: background-color 1.5s;*/
 }
 
 .memoryCard span {
   visibility: hidden;
-  transition: visibility 1.5s;
+  /*transition: visibility 0.5s;*/
 }

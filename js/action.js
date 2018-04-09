@@ -5,6 +5,7 @@ let firstCard = undefined;
 let secondCard = undefined;
 const numberOfPairs = cardDistribution.length/2;
 let pairsFound = 0;
+let numberOfTurns = 1;
 
 // use Fisher-Yates algorithm to shuffle array
 function shuffle(array) {
@@ -34,6 +35,11 @@ function hideCards(cardOne, cardTwo) {
   cardTwo.style.backgroundColor = '#555';
 }
 
+function increaseTurn() {
+  numberOfTurns++;
+  document.querySelector('p').textContent = 'Turn: ' + numberOfTurns;
+}
+
 placeCards(cardDistribution);
 console.log('cards placed on grid');
 
@@ -60,7 +66,7 @@ for (let i = 0; i < cardDistribution.length; i++) {
           pairsFound++;
           console.log('Number of pairs found: ' + pairsFound);
           if (numberOfPairs === pairsFound) { //check if game is won
-            alert('You win! You only needed ' + pairsFound + ' turns!');
+            alert('You win! You only needed ' + numberOfTurns + ' turns!');
           }
         } else { //cards do not match --> hide both
           setTimeout(function() {
@@ -68,6 +74,7 @@ for (let i = 0; i < cardDistribution.length; i++) {
             firstCard = undefined; 
           },1500);
         }
+        increaseTurn();
       }
       
     }
