@@ -21,9 +21,9 @@ function placeCards(cardDistribution) {
   // shuffle cards:
   cardDistribution = shuffle(cardDistribution);
   // put a symbol to every card on the field:
-  for (let i = 1; i <= cardDistribution.length; i++) {
+  for (let i = 0; i < cardDistribution.length; i++) {
     let card = document.querySelector('#card' + i); //respective card
-    card.innerHTML = '<span>' + cardDistribution[i-1] + '</span>';
+    card.innerHTML = '<span>' + cardDistribution[i] + '</span>';
   }
 }
 
@@ -38,7 +38,7 @@ placeCards(cardDistribution);
 console.log('cards placed on grid');
 
 // attach eventListener to every card:
-for (let i = 1; i <= cardDistribution.length; i++) {
+for (let i = 0; i < cardDistribution.length; i++) {
   let card = document.querySelector('#card' + i); //respective card
   // what happens when card is clicked:
   console.log('Attach eventListener to card ' + i);
@@ -63,21 +63,14 @@ for (let i = 1; i <= cardDistribution.length; i++) {
             alert('You win! You only needed ' + pairsFound + ' turns!');
           }
         } else { //cards do not match --> hide both
-          setTimeout(hideCards(firstCard,secondCard),1500);
-          /*firstCard.querySelector('span').style.visibility = 'hidden';
-          firstCard.style.backgroundColor = '#555';
-          setTimeout(function() {console.log('Drehe Karten um');},1500);
-          setTimeout(function() {secondCard.querySelector('span').style.visibility = 'hidden';},1500);
-          setTimeout(function() {secondCard.style.backgroundColor = '#555';},1500);*/
+          setTimeout(function() {
+            hideCards(firstCard,secondCard);
+            firstCard = undefined; 
+          },1500);
         }
-        console.log('Reset value of FirstCard');
-        firstCard = undefined; 
       }
       
     }
-    // 2nd card -> compare cards (increase turn)
-    // agree -> leave revealed -> check if game ended
-    // disagree -> cover both 
   });  
 }
 console.log('attached eventListener to every card');
