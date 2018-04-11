@@ -52,33 +52,37 @@ for (let i = 0; i < cardDistribution.length; i++) {
 
   card.addEventListener('click', function(event) {
     event.preventDefault();
-    if (card.querySelector('p').style.visibility != 'visible') {
-      // if clicked card is hidden reveal it
-      card.querySelector('p').style.visibility = 'visible';
-      //card.querySelector('span').style.opacity = '1';
-      card.style.backgroundColor = '#eee';
-      if (firstCard === undefined) {   // if first card
-        firstCard = card;
-      } else {   //if second card
-        secondCard = card;
-        console.log('1st card: ' + firstCard.textContent);
-        console.log('actual card: ' + secondCard.textContent);
-        if (firstCard.textContent === secondCard.textContent) { //cards match
-          pairsFound++;
-          console.log('Number of pairs found: ' + pairsFound);
-          firstCard = undefined; 
-          if (numberOfPairs === pairsFound) { //check if game is won
-            alert('You win! You only needed ' + numberOfTurns + ' turns!');
-          }
-        } else { //cards do not match --> hide both
-          setTimeout(function() {
-            hideCards(firstCard,secondCard);
+    if (secondCard === undefined) {
+      if (card.querySelector('p').style.visibility != 'visible') {
+        // if clicked card is hidden reveal it
+        card.querySelector('p').style.visibility = 'visible';
+        //card.querySelector('span').style.opacity = '1';
+        card.style.backgroundColor = '#eee';
+        if (firstCard === undefined) {   // if first card
+          firstCard = card;
+        } else {   //if second card
+          secondCard = card;
+          console.log('1st card: ' + firstCard.textContent);
+          console.log('actual card: ' + secondCard.textContent);
+          if (firstCard.textContent === secondCard.textContent) { //cards match
+            pairsFound++;
+            console.log('Number of pairs found: ' + pairsFound);
             firstCard = undefined; 
-          },1500);
+            secondCard = undefined;
+            if (numberOfPairs === pairsFound) { //check if game is won
+              alert('You win! You only needed ' + numberOfTurns + ' turns!');
+            }
+          } else { //cards do not match --> hide both
+            setTimeout(function() {
+              hideCards(firstCard,secondCard);
+              firstCard = undefined; 
+              secondCard = undefined;
+            },1500);
+          }
+          increaseTurn();
         }
-        increaseTurn();
+        
       }
-      
     }
   });  
 }

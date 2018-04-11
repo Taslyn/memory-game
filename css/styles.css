@@ -32,6 +32,6 @@ body {
 
 .memoryCard p {
   visibility: hidden;
-  font-size: 30px;
+  font-size: 35px;
   /*transition: visibility 0.5s;*/
 }
