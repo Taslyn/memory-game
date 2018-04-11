@@ -1,6 +1,7 @@
 // create random distribution for the cards:
 // initial distribution:
-let cardDistribution = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
+//let cardDistribution = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
+let cardDistribution = ['&#9728','&#9728','&#9729','&#9729','&#9730','&#9730','&#9733','&#9733','&#9742','&#9742','&#9752','&#9752','&#9763','&#9763','&#9775','&#9775'];
 let firstCard = undefined;
 let secondCard = undefined;
 const numberOfPairs = cardDistribution.length/2;
@@ -24,20 +25,20 @@ function placeCards(cardDistribution) {
   // put a symbol to every card on the field:
   for (let i = 0; i < cardDistribution.length; i++) {
     let card = document.querySelector('#card' + i); //respective card
-    card.innerHTML = '<span>' + cardDistribution[i] + '</span>';
+    card.innerHTML = '<p>' + cardDistribution[i] + '</p>';
   }
 }
 
 function hideCards(cardOne, cardTwo) {
-  cardOne.querySelector('span').style.visibility = 'hidden';
-  cardOne.style.backgroundColor = '#555';
-  cardTwo.querySelector('span').style.visibility = 'hidden';
-  cardTwo.style.backgroundColor = '#555';
+  cardOne.querySelector('p').style.visibility = 'hidden';
+  cardOne.style.background = '#555';
+  cardTwo.querySelector('p').style.visibility = 'hidden';
+  cardTwo.style.background = '#555';
 }
 
 function increaseTurn() {
   numberOfTurns++;
-  document.querySelector('p').textContent = 'Turn: ' + numberOfTurns;
+  document.querySelector('span').textContent = 'Turn: ' + numberOfTurns;
 }
 
 placeCards(cardDistribution);
@@ -51,9 +52,9 @@ for (let i = 0; i < cardDistribution.length; i++) {
 
   card.addEventListener('click', function(event) {
     event.preventDefault();
-    if (card.querySelector('span').style.visibility != 'visible') {
+    if (card.querySelector('p').style.visibility != 'visible') {
       // if clicked card is hidden reveal it
-      card.querySelector('span').style.visibility = 'visible';
+      card.querySelector('p').style.visibility = 'visible';
       //card.querySelector('span').style.opacity = '1';
       card.style.backgroundColor = '#eee';
       if (firstCard === undefined) {   // if first card
@@ -65,6 +66,7 @@ for (let i = 0; i < cardDistribution.length; i++) {
         if (firstCard.textContent === secondCard.textContent) { //cards match
           pairsFound++;
           console.log('Number of pairs found: ' + pairsFound);
+          firstCard = undefined; 
           if (numberOfPairs === pairsFound) { //check if game is won
             alert('You win! You only needed ' + numberOfTurns + ' turns!');
           }
