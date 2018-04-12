@@ -7,6 +7,8 @@ const numberOfPairs = cardDistribution.length/2;
 let pairsFound = 0;
 let numberOfTurns = 1;
 
+newGameButton = document.querySelector('#reloadButton');
+
 // use Fisher-Yates algorithm to shuffle array
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -35,20 +37,25 @@ function hideCards(cardOne, cardTwo) {
   cardTwo.style.background = '#555';
 }
 
+function hideAllCards() {
+  for (let i = 0; i < cardDistribution.length; i++) {
+    let card = document.querySelector('#card' + i); //respective card
+    card.style.background = '#555';
+    card.querySelector('p').style.visibility = 'hidden';
+  }
+}
+
 function increaseTurn() {
   numberOfTurns++;
   document.querySelector('span').textContent = 'Turn: ' + numberOfTurns;
 }
 
 placeCards(cardDistribution);
-console.log('cards placed on grid');
 
 // attach eventListener to every card:
 for (let i = 0; i < cardDistribution.length; i++) {
   let card = document.querySelector('#card' + i); //respective card
   // what happens when card is clicked:
-  console.log('Attach eventListener to card ' + i);
-
   card.addEventListener('click', function(event) {
     event.preventDefault();
     if (secondCard === undefined) {
@@ -61,11 +68,8 @@ for (let i = 0; i < cardDistribution.length; i++) {
           firstCard = card;
         } else {   //if second card
           secondCard = card;
-          console.log('1st card: ' + firstCard.textContent);
-          console.log('actual card: ' + secondCard.textContent);
           if (firstCard.textContent === secondCard.textContent) { //cards match
             pairsFound++;
-            console.log('Number of pairs found: ' + pairsFound);
             firstCard = undefined; 
             secondCard = undefined;
             if (numberOfPairs === pairsFound) { //check if game is won
@@ -85,4 +89,11 @@ for (let i = 0; i < cardDistribution.length; i++) {
     }
   });  
 }
-console.log('attached eventListener to every card');
+
+newGameButton.onclick = function() {
+  hideAllCards();
+  placeCards(cardDistribution);
+  numberOfTurns = 1;
+  pairsFound = 0;
+  document.querySelector('span').textContent = 'Turn: ' + numberOfTurns;
+};

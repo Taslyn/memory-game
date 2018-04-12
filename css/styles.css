@@ -36,3 +36,8 @@ body {
   font-size: 35px;
   /*transition: visibility 0.5s;*/
 }
+
+#reloadButton {
+  background-color: white;
+  border-radius: 10%;
+}
