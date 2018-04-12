@@ -1,7 +1,6 @@
 // create random distribution for the cards:
 // initial distribution:
-//let cardDistribution = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
-let cardDistribution = ['&#9728','&#9728','&#9729','&#9729','&#9730','&#9730','&#9733','&#9733','&#9742','&#9742','&#9752','&#9752','&#9763','&#9763','&#9775','&#9775'];
+let cardDistribution = ['&#9728','&#9728','&#9729','&#9729','&#9730','&#9730','&#9733','&#9733','&#9742','&#9742','&#9752','&#9752','&#9829','&#9829','&#9775','&#9775'];
 let firstCard = undefined;
 let secondCard = undefined;
 const numberOfPairs = cardDistribution.length/2;
