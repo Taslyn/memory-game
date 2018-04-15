@@ -10,9 +10,12 @@
 
 <body>
 	<h2>Memory</h2>
-	<span id="starRating"></span>
-	<span id="turnDisplay">Turn: 1</span> 
-	<button type="button" id="reloadButton">&#8635 New Game</button>
+	<span id="statisticsLine">
+		<span id="starRating"></span>
+		<span id="turnDisplay">Turn: 1</span> 
+		<span id="timer"></span>
+		<button type="button" id="reloadButton" onclick="startNewGame()">&#8635 New Game</button>
+	</span>
   <div id="gameBackground">
   	<div class="memoryCard" id="card0"></div>
     <div class="memoryCard" id="card1"></div>

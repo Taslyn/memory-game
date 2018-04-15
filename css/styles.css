@@ -1,8 +1,14 @@
 body {
-  max-width: 60em;
   height: 100vh;
   margin: auto;
   text-align: center;
+}
+
+#statisticsLine {
+  width: 80vh;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 #gameBackground {
@@ -25,7 +31,6 @@ body {
   margin: auto;
   text-align: center;
   vertical-align: middle;
-  position: relative;
   width: 23%;
   height: 23%;
   /*transition: background 1.5s;*/

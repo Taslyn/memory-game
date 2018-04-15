@@ -6,6 +6,11 @@ let secondCard = undefined;
 const numberOfPairs = cardDistribution.length/2;
 let pairsFound = 0;
 let numberOfTurns = 1;
+let startTime = new Date().getTime();
+let pastTime = setInterval(function() {
+  let now = new Date().getTime();
+  document.querySelector('#timer').textContent = 'Timer: ' + Math.floor((now - startTime)/1000) + 's';
+}, 1000);
 
 newGameButton = document.querySelector('#reloadButton');
 
@@ -67,6 +72,16 @@ function updateStarRating(numberOfTurns) {
       }
 }
 
+function startNewGame() {
+  hideAllCards();
+  placeCards(cardDistribution);
+  numberOfTurns = 1;
+  pairsFound = 0;
+  updateStarRating(numberOfTurns);
+  document.querySelector('#turnDisplay').textContent = 'Turn: 1';
+  startTime = new Date().getTime();
+}
+
 placeCards(cardDistribution);
 updateStarRating(numberOfTurns);
 
@@ -91,7 +106,7 @@ for (let i = 0; i < cardDistribution.length; i++) {
             firstCard = undefined; 
             secondCard = undefined;
             if (numberOfPairs === pairsFound) { //check if game is won
-              alert('You win! You only needed ' + numberOfTurns + ' turns!');
+              alert('Congratulations, you won!<br/>You needed ' + numberOfTurns + ' turns! <br/>Your rating is ' + document.querySelector('#starRating').innerHTML + '.');
             }
           } else { //cards do not match --> hide both
             setTimeout(function() {
@@ -109,10 +124,5 @@ for (let i = 0; i < cardDistribution.length; i++) {
 }
 
 newGameButton.onclick = function() {
-  hideAllCards();
-  placeCards(cardDistribution);
-  numberOfTurns = 1;
-  pairsFound = 0;
- updateStarRating(numberOfTurns);
-  document.querySelector('#turnDisplay').textContent = 'Turn: 1';
+  startNewGame();
 };
