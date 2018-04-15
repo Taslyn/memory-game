@@ -45,12 +45,30 @@ function hideAllCards() {
   }
 }
 
-function increaseTurn() {
+function updateTurn() {
   numberOfTurns++;
-  document.querySelector('span').textContent = 'Turn: ' + numberOfTurns;
+  document.querySelector('#turnDisplay').textContent = 'Turn: ' + numberOfTurns;
+  updateStarRating(numberOfTurns);
+}
+
+function updateStarRating(numberOfTurns) {
+  if (numberOfTurns > 24) {
+        document.querySelector('#starRating').innerHTML = '&#9734 &#9734 &#9734';
+      } else {
+        if (numberOfTurns > 18) {
+          document.querySelector('#starRating').innerHTML = '&#9733 &#9734 &#9734';
+        } else {
+          if (numberOfTurns > 12) {
+            document.querySelector('#starRating').innerHTML = '&#9733 &#9733 &#9734';
+          } else {
+            document.querySelector('#starRating').innerHTML = '&#9733 &#9733 &#9733';
+          }
+        }
+      }
 }
 
 placeCards(cardDistribution);
+updateStarRating(numberOfTurns);
 
 // attach eventListener to every card:
 for (let i = 0; i < cardDistribution.length; i++) {
@@ -82,7 +100,7 @@ for (let i = 0; i < cardDistribution.length; i++) {
               secondCard = undefined;
             },1500);
           }
-          increaseTurn();
+          updateTurn();
         }
         
       }
@@ -95,5 +113,6 @@ newGameButton.onclick = function() {
   placeCards(cardDistribution);
   numberOfTurns = 1;
   pairsFound = 0;
-  document.querySelector('span').textContent = 'Turn: ' + numberOfTurns;
+ updateStarRating(numberOfTurns);
+  document.querySelector('#turnDisplay').textContent = 'Turn: 1';
 };
