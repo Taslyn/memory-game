@@ -73,6 +73,7 @@ function updateStarRating(numberOfTurns) {
 }
 
 function startNewGame() {
+  document.querySelector('#popup').style.display = 'none';
   hideAllCards();
   placeCards(cardDistribution);
   numberOfTurns = 1;
@@ -80,6 +81,7 @@ function startNewGame() {
   updateStarRating(numberOfTurns);
   document.querySelector('#turnDisplay').textContent = 'Turn: 1';
   startTime = new Date().getTime();
+  document.querySelector('#gameArea').style.display = 'initial';
 }
 
 placeCards(cardDistribution);
@@ -106,7 +108,9 @@ for (let i = 0; i < cardDistribution.length; i++) {
             firstCard = undefined; 
             secondCard = undefined;
             if (numberOfPairs === pairsFound) { //check if game is won
-              alert('Congratulations, you won!<br/>You needed ' + numberOfTurns + ' turns! <br/>Your rating is ' + document.querySelector('#starRating').innerHTML + '.');
+              document.querySelector('#gameArea').style.display = 'none';
+              document.querySelector('#popup').style.display = 'block';
+              document.querySelector('#popup').innerHTML = 'Congratulations, you won!<br/>You needed ' + numberOfTurns + ' turns! <br/>Your rating is ' + document.querySelector('#starRating').innerHTML + '. <br/><button type="button" id="reloadButton" onclick="startNewGame()">Play again!</button>';
             }
           } else { //cards do not match --> hide both
             setTimeout(function() {
