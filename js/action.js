@@ -5,7 +5,6 @@ let secondCard = undefined;
 const numberOfPairs = cardDistribution.length/2;
 let pairsFound = 0;
 let numberOfTurns = 0;
-let timeForWin = 0;
 let spentTime = 0;
 let startTime = undefined;
 
