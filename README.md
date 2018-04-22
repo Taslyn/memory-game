@@ -33,7 +33,7 @@ The game ends once all cards have been correctly matched.
 (Source: Udacity explanation of the Memory Card Game Project)
 
 ## 2. How to install the game
-To install a local copy of the game you can clone this GitHub repository. How to do this is explained [here](https://help.github.com/articles/cloning-a-repository/). Afterwards, just open the HTML File `index.html` in your browser and you can play!
+To install a local copy of the game you can clone this GitHub repository. How to do this is explained [here](https://help.github.com/articles/cloning-a-repository/). Afterwards, just open the HTML File *index.html* in your browser and you can play!
 
 ## 3. HTML File
 The HTML File *index.html* contains the general content of the page, i.e. a headline and a line containing the statistics of the current game like the star rating, the turns that have passed and the timer. Furthermore, a button to restart the game is available. Beneath, the game board is located where each card is represented by a `<div>`. Their content is added using JavaScript. 
