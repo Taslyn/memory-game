@@ -4,7 +4,7 @@ let firstCard = undefined;
 let secondCard = undefined;
 const numberOfPairs = cardDistribution.length/2;
 let pairsFound = 0;
-let numberOfTurns = 1;
+let numberOfTurns = 0;
 let timeForWin = 0;
 let spentTime = 0;
 
@@ -83,10 +83,12 @@ function startNewGame() {
   document.querySelector('#popup').style.display = 'none';
   hideAllCards();
   placeCards(cardDistribution);
-  numberOfTurns = 1;
+  numberOfTurns = 0;
   pairsFound = 0;
+  firstCard = undefined;
+  secondCard = undefined;
   updateStarRating(numberOfTurns);
-  document.querySelector('#turnDisplay').textContent = 'Turn: 1';
+  document.querySelector('#turnDisplay').textContent = 'Turn: ' + numberOfTurns;
   startTime = new Date().getTime();
   document.querySelector('#gameArea').style.display = 'initial';
 }
@@ -111,6 +113,7 @@ for (let i = 0; i < cardDistribution.length; i++) {
           firstCard = card;
         } else {   //if second card
           secondCard = card;
+          updateTurn();
           if (firstCard.textContent === secondCard.textContent) { //cards match
             pairsFound++;
             firstCard = undefined; 
@@ -128,7 +131,6 @@ for (let i = 0; i < cardDistribution.length; i++) {
               secondCard = undefined;
             },1500);
           }
-          updateTurn();
         }
         
       }
