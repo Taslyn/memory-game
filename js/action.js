@@ -7,18 +7,7 @@ let pairsFound = 0;
 let numberOfTurns = 0;
 let timeForWin = 0;
 let spentTime = 0;
-
-//timer:
-let startTime = new Date().getTime();
-let pastTime = setInterval(function() {
-  let now = new Date().getTime();
-  spentTime = Math.floor((now - startTime)/1000);
-  if (pairsFound!=numberOfPairs) {
-    document.querySelector('#timer').textContent = 'Timer: ' +  spentTime + 's';
-  }
-}, 1000);
-
-newGameButton = document.querySelector('#reloadButton');
+let startTime = undefined;
 
 // ------------define functions-----------------
 // use Fisher-Yates algorithm to shuffle array
@@ -87,9 +76,10 @@ function startNewGame() {
   pairsFound = 0;
   firstCard = undefined;
   secondCard = undefined;
+  startTime = undefined;
+  document.querySelector('#timer').textContent = 'Timer: 0s';
   updateStarRating(numberOfTurns);
   document.querySelector('#turnDisplay').textContent = 'Turn: ' + numberOfTurns;
-  startTime = new Date().getTime();
   document.querySelector('#gameArea').style.display = 'initial';
 }
 //---------------------------------------------------
@@ -103,6 +93,17 @@ for (let i = 0; i < cardDistribution.length; i++) {
   // what happens when card is clicked:
   card.addEventListener('click', function(event) {
     event.preventDefault();
+    if (startTime===undefined) {
+      startTime = new Date().getTime();
+    }
+    //timer:
+    let pastTime = setInterval(function() {
+      if (pairsFound!=numberOfPairs && startTime!=undefined) {
+        let now = new Date().getTime();
+        spentTime = Math.floor((now - startTime)/1000);
+        document.querySelector('#timer').textContent = 'Timer: ' +  spentTime + 's';
+      }
+    }, 1000);
     if (secondCard === undefined) {
       if (card.querySelector('p').style.visibility != 'visible') {
         // if clicked card is hidden reveal it
