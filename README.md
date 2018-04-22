@@ -28,6 +28,7 @@ Each turn the following happens:
 * If the cards match, both cards stay flipped over.
 * If the cards do not match, both cards are flipped face down.
 The game ends once all cards have been correctly matched.
+(Source: Udacity explanation of the Memory Card Game Project)
 
 ## 2. HTML File
 The HTML File *index.html* contains the general content of the page, i.e. a headline and a line containing the statistics of the current game like the star rating, the turns that have passed and the timer. Furthermore, a button to restart the game is available. Beneath, the game board is located where each card is represented by a `<div>`. Their content is added using JavaScript. 
