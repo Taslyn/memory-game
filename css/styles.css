@@ -38,7 +38,6 @@ body {
 
 .memoryCard p {
   visibility: hidden;
-  font-size: 2em;
 }
 
 #reloadButton {
@@ -64,6 +63,10 @@ body {
   #statisticsLine {
     width: 95vw;
   }
+
+  .memoryCard p {
+    font-size: 6vw;
+  }
 }
 @media all and (orientation:landscape) {
   #gameBackground {
@@ -73,5 +76,9 @@ body {
 
   #statisticsLine {
     width: 80vh;
+  }
+
+  .memoryCard p {
+    font-size: 5.5vh;
   }
 }
