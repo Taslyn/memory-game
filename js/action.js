@@ -1,19 +1,26 @@
-// create random distribution for the cards:
-// initial distribution:
+// initial distribution for symbols on cards:
 let cardDistribution = ['&#9728','&#9728','&#9729','&#9729','&#9730','&#9730','&#9733','&#9733','&#9742','&#9742','&#9752','&#9752','&#9829','&#9829','&#9775','&#9775'];
 let firstCard = undefined;
 let secondCard = undefined;
 const numberOfPairs = cardDistribution.length/2;
 let pairsFound = 0;
 let numberOfTurns = 1;
+let timeForWin = 0;
+let spentTime = 0;
+
+//timer:
 let startTime = new Date().getTime();
 let pastTime = setInterval(function() {
   let now = new Date().getTime();
-  document.querySelector('#timer').textContent = 'Timer: ' + Math.floor((now - startTime)/1000) + 's';
+  spentTime = Math.floor((now - startTime)/1000);
+  if (pairsFound!=numberOfPairs) {
+    document.querySelector('#timer').textContent = 'Timer: ' +  spentTime + 's';
+  }
 }, 1000);
 
 newGameButton = document.querySelector('#reloadButton');
 
+// ------------define functions-----------------
 // use Fisher-Yates algorithm to shuffle array
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -83,11 +90,12 @@ function startNewGame() {
   startTime = new Date().getTime();
   document.querySelector('#gameArea').style.display = 'initial';
 }
-
+//---------------------------------------------------
+//initial placement of cards on the grid:
 placeCards(cardDistribution);
 updateStarRating(numberOfTurns);
 
-// attach eventListener to every card:
+// attach eventListener containing the game's logic to every card:
 for (let i = 0; i < cardDistribution.length; i++) {
   let card = document.querySelector('#card' + i); //respective card
   // what happens when card is clicked:
@@ -110,7 +118,8 @@ for (let i = 0; i < cardDistribution.length; i++) {
             if (numberOfPairs === pairsFound) { //check if game is won
               document.querySelector('#gameArea').style.display = 'none';
               document.querySelector('#popup').style.display = 'block';
-              document.querySelector('#popup').innerHTML = 'Congratulations, you won!<br/>You needed ' + numberOfTurns + ' turns! <br/>Your rating is ' + document.querySelector('#starRating').innerHTML + '. <br/><button type="button" id="reloadButton" onclick="startNewGame()">Play again!</button>';
+              //popup text displayed when game is won:
+              document.querySelector('#popup').innerHTML = 'Congratulations, you won!<br/>You needed ' + numberOfTurns + ' turns! <br/>Your rating is ' + document.querySelector('#starRating').innerHTML + '. <br/>You took ' + spentTime + 's to finish this game. <br/><button type="button" id="reloadButton" onclick="startNewGame()">Play again!</button>';
             }
           } else { //cards do not match --> hide both
             setTimeout(function() {
@@ -126,7 +135,3 @@ for (let i = 0; i < cardDistribution.length; i++) {
     }
   });  
 }
-
-newGameButton.onclick = function() {
-  startNewGame();
-};
