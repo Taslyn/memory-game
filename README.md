@@ -12,13 +12,15 @@ This project contains everything you need to play a memory game in your browser.
 
 [1. Explanation of the Project](#1-explanation-of-the-project)
 
-[2. HTML File](#2-html-file)
+[2. How to install the game](#2-how-to-install-the-game)
 
-[3. CSS File](#3-css-file)
+[3. HTML File](#3-html-file)
 
-[4. JavaScript File](#4-javascript-file)
+[4. CSS File](#4-css-file)
 
-[5. Browser Compatibility](#5-browser-compatibility)
+[5. JavaScript File](#5-javascript-file)
+
+[6. Browser Compatibility](#6-browser-compatibility)
 
 ## 1. Explanation of the Project
 The game board consists of sixteen "cards" arranged in a grid. The deck is made up of eight different pairs of cards, each with different symbols on one side. The cards are arranged randomly on the grid with the symbol face down. The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match!
@@ -30,16 +32,19 @@ Each turn the following happens:
 The game ends once all cards have been correctly matched.
 (Source: Udacity explanation of the Memory Card Game Project)
 
-## 2. HTML File
+## 2. How to install the game
+To install a local copy of the game you can clone this GitHub repository. How to do this is explained [here](https://help.github.com/articles/cloning-a-repository/). Afterwards, just open the HTML File `index.html` in your browser and you can play!
+
+## 3. HTML File
 The HTML File *index.html* contains the general content of the page, i.e. a headline and a line containing the statistics of the current game like the star rating, the turns that have passed and the timer. Furthermore, a button to restart the game is available. Beneath, the game board is located where each card is represented by a `<div>`. Their content is added using JavaScript. 
 Everything that is needed to display the game board and statistics is contained in the `<div id="gameArea">`. 
-An additional `<div>` for the content that pops up when the game is won is placed seperately: `<div id="popup">`. The content for this `<div>` is added interactively using [JavaScript](#4-javascript-file).
+An additional `<div>` for the content that pops up when the game is won is placed seperately: `<div id="popup">`. The content for this `<div>` is added interactively using [JavaScript](#5-javascript-file).
 
-## 3. CSS File
-Most of the styling is done in the CSS File *css/styles.css*. Here, the visibility of each card's symbol and of the popup is initialized with *invisible*. The changing of these values according to the game's progress is handled in the [JavaScript File](#4-javascript-file). 
+## 4. CSS File
+Most of the styling is done in the CSS File *css/styles.css*. Here, the visibility of each card's symbol and of the popup is initialized with *invisible*. The changing of these values according to the game's progress is handled in the [JavaScript File](#5-javascript-file). 
 Furthermore, the CSS File adjusts the display of the game board according to the viewport orientation. 
 
-## 4. JavaScript File
+## 5. JavaScript File
 The JavaScript File *js/action.js* is responsible for implementing the game's logic and all interactive behaviour.
 Since all displayed text changes regularly, JavaScript is resposible for updating the text content. 
 Actions that are executed repeatedly were stored in functions:
@@ -53,7 +58,7 @@ Actions that are executed repeatedly were stored in functions:
 
 The game's logic is implemented by attaching an `eventListener` to every card. It handles all decisions and actions that are needed whenever a card is clicked by using the functions described above.     
 
-## 5. Browser Compatibility
+## 6. Browser Compatibility
 
 This project was designed to work on Google Chrome and was not tested on any other browsers.
 The layout was tested to work on iPad and mobile phones.
